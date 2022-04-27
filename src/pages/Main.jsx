@@ -1,20 +1,27 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import NotesForm from "../components/NotesForm"
 import NotesList from "../components/NotesList"
-import MyInput from "../components/UI/input/MyInput"
+import MyLoader from "../components/UI/loader/MyLoader"
+import { FirebaseContext } from "../context/firebase/firebaseContext"
 
 const Main = () => {
-    const [notes, setNotes] = useState([
-        { id: 1, title: 'Passwords' },
-        { id: 2, title: 'Emails' },
-        { id: 3, title: 'Nicknames' },
-    ])
+    const {loading, notes, fetchNotes, removeNote} = useContext(FirebaseContext)
+
+    useEffect(() => {
+        fetchNotes()
+    }, [])
 
     return (
         <div>
             <h1 className="App__title">My Notes.</h1>
             <NotesForm/>
-            <NotesList notes={notes}/>
+            {loading
+                ? <MyLoader/>
+                : <NotesList 
+                    notes={notes}
+                    onRemove={removeNote}
+                />
+            }
         </div>
     )
 }

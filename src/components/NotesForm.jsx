@@ -1,15 +1,26 @@
 import React, { useContext, useState } from "react";
 import { AlertContext } from "../context/alert/alertContext";
+import { FirebaseContext } from "../context/firebase/firebaseContext";
 import MyAlert from "./UI/alert/MyAlert";
 import MyInput from "./UI/input/MyInput";
 
 const NotesForm = () => {
     const [value, setValue] = useState('')
     const alert = useContext(AlertContext)
+    const firebase = useContext(FirebaseContext)
 
     const sumbitHandler = (e) => {
         e.preventDefault()
-        alert.show('#4BB34B')
+        if (value.trim()) {
+            firebase.addNote(value.trim()).then(() => {
+                alert.show('#4BB34B')
+            }).catch(() => {
+                alert.show('red')
+            })
+            setValue('')
+        } else {
+            alert.show('yellow')
+        }
     }
 
     return (

@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
+import { CSSTransition } from "react-transition-group";
 import { AlertContext } from "../../../context/alert/alertContext";
 import './MyAlert.scss'
 
 const MyAlert = () => {
-    const {alert, hide} = useContext(AlertContext)
-    console.log(alert.visible);
-    if (!alert.visible) return null
+    const {alert} = useContext(AlertContext)
 
     return (
-        <div className="alert" style={{ backgroundColor: alert.color }}>
-        </div>
+        <CSSTransition
+            in={alert.visible}
+        >
+            <div className="alert" style={{ backgroundColor: alert.color }}></div>
+        </CSSTransition>
+        
     )
 }
 

@@ -1,5 +1,4 @@
-const SHOW_ALERT = 'SHOW_ALERT'
-const HIDE_ALERT = 'HIDE_ALERT'
+import { SHOW_ALERT, HIDE_ALERT } from '../types'
 
 const handlers = {
     [SHOW_ALERT]: (state, {payload}) => ({ ...payload, visible: true }),
