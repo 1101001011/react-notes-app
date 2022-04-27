@@ -13,15 +13,25 @@ const NotesForm = () => {
         e.preventDefault()
         if (value.trim()) {
             firebase.addNote(value.trim())
-                .then(() => {alert.show('#2bcf5a')})
-                .catch(() => {alert.show('red')})
+                .then(() => {alert.show('#30c75b')})
+                .then(() => {
+                    setTimeout(() => {
+                        alert.hide()
+                    }, 2000)
+                })
+                .catch(() => {alert.show('#fc4c4c')})
             setValue('')
-            alert.hide()
         } else {
-            setTimeout(() => {
-                alert.show('#fce153')
-            }, 200)
-            alert.hide()
+            new Promise((r) => {
+                setTimeout(() => {
+                    alert.show('#fc4c4c')
+                    r()
+                }, 200)
+            }).then(() => {
+                setTimeout(() => {
+                    alert.hide()
+                }, 2000)
+            })
         }
     }
 

@@ -2,12 +2,13 @@ import React, { useReducer } from "react";
 import axios from "axios";
 import { FirebaseContext } from "./firebaseContext";
 import { firebaseReducer } from "./firebaseReducer";
-import { ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER } from "../types";
+import { ADD_NOTE, FETCH_NOTES, FETCH_NOTE, REMOVE_NOTE, SHOW_LOADER } from "../types";
 
 const url = 'https://react-notes-app-10ad3-default-rtdb.firebaseio.com'
 
 const FirebaseState = ({children}) => {
     const initialState = {
+        note: {},
         notes: [],
         loading: false
     }
@@ -18,7 +19,6 @@ const FirebaseState = ({children}) => {
     const fetchNotes = async () => {
         showLoader()
         const response = await axios.get(`${url}/notes.json`)
-
         const payload = Object.keys(response.data).map(key => {
             return {
                 ...response.data[key],
@@ -27,6 +27,14 @@ const FirebaseState = ({children}) => {
         })
 
         dispatch({ type: FETCH_NOTES, payload })
+    }
+
+    const fetchNote = async (id) => {
+        showLoader()
+        const response = await axios.get(`${url}/notes/${id}.json`)
+        const payload = response.data
+
+        dispatch({ type: FETCH_NOTE, payload })
     }
 
     const addNote = async title => {
@@ -58,9 +66,10 @@ const FirebaseState = ({children}) => {
 
     return (
         <FirebaseContext.Provider value={{
-            showLoader, addNote, fetchNotes, removeNote,
+            showLoader, addNote, fetchNotes, fetchNote, removeNote,
             loading: state.loading,
-            notes: state.notes
+            notes: state.notes,
+            note: state.note
         }}>
             {children}
         </FirebaseContext.Provider>
