@@ -1,0 +1,33 @@
+.note__info {
+    &__header {
+        margin-bottom: 30px;
+        &-i {
+            padding: 10px 20px;
+            background-color: rgb(248, 247, 247);
+            border-radius: 5px;
+            & h1 {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    &__textarea {
+        width: 100%;
+        min-height: 300px;
+        padding: 10px 10px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        &:focus {
+            outline: none;
+            border: 1px solid rgb(137, 137, 137);
+        }
+        &::placeholder {
+            color: rgb(173, 173, 173);
+        }
+    }
+    &__btn {
+        text-align: end;
+    }
+}

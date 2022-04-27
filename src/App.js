@@ -6,6 +6,8 @@ import About from './pages/About';
 import Main from './pages/Main';
 import NotePage from './pages/NotePage';
 import './styles/App.scss'
+import './styles/note.scss'
+import './styles/noteInfo.scss'
 
 function App() {
     return (

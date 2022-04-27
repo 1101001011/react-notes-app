@@ -1,0 +1,47 @@
+.note {
+    padding: 15px 20px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    transition: all .25s ease;
+    &:hover {
+        background-color: rgb(243, 243, 243);
+    }
+    &__info {
+        width: 100%;
+        height: 100%;
+    }
+    &__title {
+        margin-bottom: 10px;
+    }
+    &__date {
+        color: rgb(111, 111, 111);
+    }
+    &__close {
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+
+.note-enter {
+    opacity: 0;
+    transform: translateX(-250px);
+}
+
+.note-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all .1s ease-out;
+}
+
+.note-exit {
+    opacity: 1;
+}
+
+.note-exit-active {
+    opacity: 0;
+    transform: translateX(-250px);
+    transition: all .1s ease-out;
+}
