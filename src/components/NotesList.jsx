@@ -1,15 +1,20 @@
 import React from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import NotesItem from "./NotesItem";
 
 const NotesList = ({notes, onRemove}) => (
     <div>
-        {notes.map(note =>
-            <NotesItem 
-                note={note} 
-                key={note.id}
-                onRemove={onRemove}
-            />  
-        )}
+        <TransitionGroup>
+            {notes.map(note =>
+                <CSSTransition
+                    key={note.id}
+                    timeout={500}
+                    classNames='note'
+                >
+                    <NotesItem note={note} onRemove={onRemove}/>  
+                </CSSTransition>
+            )}
+        </TransitionGroup>
     </div>
 )
 

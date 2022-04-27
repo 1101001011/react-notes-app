@@ -9,8 +9,15 @@ const MyAlert = () => {
     return (
         <CSSTransition
             in={alert.visible}
+            timeout={200}
+            classNames={'alert'}
+            mountOnEnter
+            unmountOnExit
         >
-            <div className="alert" style={{ backgroundColor: alert.color }}></div>
+            <div 
+                className="alert" 
+                style={{ backgroundColor: alert.color }}
+            ></div>
         </CSSTransition>
         
     )

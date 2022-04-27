@@ -12,14 +12,16 @@ const NotesForm = () => {
     const sumbitHandler = (e) => {
         e.preventDefault()
         if (value.trim()) {
-            firebase.addNote(value.trim()).then(() => {
-                alert.show('#4BB34B')
-            }).catch(() => {
-                alert.show('red')
-            })
+            firebase.addNote(value.trim())
+                .then(() => {alert.show('#2bcf5a')})
+                .catch(() => {alert.show('red')})
             setValue('')
+            alert.hide()
         } else {
-            alert.show('yellow')
+            setTimeout(() => {
+                alert.show('#fce153')
+            }, 200)
+            alert.hide()
         }
     }
 

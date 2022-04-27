@@ -1,6 +1,24 @@
 .alert {
-    width: 30px;
-    height: inherit;
+    position: absolute;
+    z-index: 10;
+    top: 13px;
+    right: -30px;
+    width: 15px;
+    height: 15px;
     margin-left: 10px;
-    border-radius: 5px;
+    border-radius: 50%;
+}
+
+.alert-enter {
+    opacity: 0;
+}
+
+.alert-enter-active {
+    transition: all .2s ease-out;
+    opacity: 1;
+}
+
+.alert-exit-active {
+    transition: all .2s ease-out;
+    opacity: 0;
 }

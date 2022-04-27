@@ -20,6 +20,7 @@
 }
 
 .notes__form {
+    position: relative;
     display: flex;
     margin-bottom: 20px;
 }
@@ -45,4 +46,25 @@
         font-size: 20px;
         cursor: pointer;
     }
+}
+
+.note-enter {
+    opacity: 0;
+    transform: translateX(-250px);
+}
+
+.note-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all .1s ease-out;
+}
+
+.note-exit {
+    opacity: 1;
+}
+
+.note-exit-active {
+    opacity: 0;
+    transform: translateX(-250px);
+    transition: all .1s ease-out;
 }

@@ -7,7 +7,7 @@ const NotesItem = ({note, onRemove}) => (
     >
         <div className="note__info">
             <h3 className="note__title">{note.title}</h3>
-            <span className="note__date">{note.date}</span>
+            <span className="note__date">{(note.date).slice(0,10)}</span>
         </div>
         <div 
             className="note__close"

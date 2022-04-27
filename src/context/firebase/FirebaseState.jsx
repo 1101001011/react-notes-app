@@ -42,8 +42,6 @@ const FirebaseState = ({children}) => {
             }
 
             dispatch({ type: ADD_NOTE, payload })
-
-            console.log('Add note:', response.data);
         } catch (e) {
             throw new Error(e.message)
         }
