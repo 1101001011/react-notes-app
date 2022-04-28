@@ -4,6 +4,7 @@ import {FirebaseContext} from "../context/firebase/firebaseContext";
 
 const NoteInfo = ({note, paramsID}) => {
     const [newNote, setNewNote] = useState({...note, text: note.text})
+    const [active, setActive] = useState(false)
     const {updateNote} = useContext(FirebaseContext)
     let data = ""
     if (note.date) {
@@ -12,6 +13,10 @@ const NoteInfo = ({note, paramsID}) => {
 
     const saveHandler = (e) => {
         e.preventDefault()
+        setActive(true)
+        setTimeout(() => {
+            setActive(false)
+        }, 2000)
         updateNote(paramsID, newNote.text)
     }
 
@@ -24,6 +29,9 @@ const NoteInfo = ({note, paramsID}) => {
                 </div>
             </div>
             <textarea
+                style={{
+                    backgroundColor: active ? "#daffe4" : "transparent",
+                    transition: active ? "all .2s ease-out" : "all 1s ease-out"}}
                 value={newNote.text}
                 className="note__info__textarea"
                 placeholder="Note info.."

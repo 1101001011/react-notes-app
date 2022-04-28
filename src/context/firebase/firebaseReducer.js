@@ -4,7 +4,7 @@ const handlers = {
     [SHOW_LOADER]: state => ({...state, loading: true}),
     [ADD_NOTE]: (state, {payload}) => ({
         ...state,
-        notes: [...state.notes, payload]
+        notes: state.notes ? [...state.notes, payload] : [payload]
     }),
     [UPDATE_NOTE]: (state, {payload}) => ({
         ...state,
