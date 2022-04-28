@@ -9,7 +9,7 @@ const NotesForm = () => {
     const alert = useContext(AlertContext)
     const firebase = useContext(FirebaseContext)
 
-    const sumbitHandler = (e) => {
+    const submitHandler = (e) => {
         e.preventDefault()
         if (value.trim()) {
             firebase.addNote(value.trim())
@@ -19,24 +19,12 @@ const NotesForm = () => {
                         alert.hide()
                     }, 2000)
                 })
-                .catch(() => {alert.show('#fc4c4c')})
             setValue('')
-        } else {
-            new Promise((r) => {
-                setTimeout(() => {
-                    alert.show('#fc4c4c')
-                    r()
-                }, 200)
-            }).then(() => {
-                setTimeout(() => {
-                    alert.hide()
-                }, 2000)
-            })
         }
     }
 
     return (
-        <form onSubmit={(e) => sumbitHandler(e)}>
+        <form onSubmit={(e) => submitHandler(e)}>
             <div className="notes__form">
                 <MyInput
                     value={value}

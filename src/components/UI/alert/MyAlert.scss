@@ -1,24 +1,30 @@
 .alert {
     position: absolute;
     z-index: 10;
-    top: 15px;
-    right: -25px;
-    width: 12px;
-    height: 12px;
-    margin-left: 10px;
+    top: 7px;
+    right: -35px;
+    padding: 5px;
     border-radius: 50%;
-}
+    display: flex;
+    &__icon {
+        max-width: 15px;
+        filter: invert(100%);
+    }
+    &__error {
+        margin-top: 5px;
+        color: red;
+        font-size: 14px;
+    }
 
-.alert-enter {
-    opacity: 0;
-}
-
-.alert-enter-active {
-    transition: all .2s ease-out;
-    opacity: 1;
-}
-
-.alert-exit-active {
-    transition: all .2s ease-out;
-    opacity: 0;
+    &-enter {
+        opacity: 0;
+    }
+    &-enter-active {
+        transition: all .2s ease-out;
+        opacity: 1;
+    }
+    &-exit-active {
+        transition: all .2s ease-out;
+        opacity: 0;
+    }
 }

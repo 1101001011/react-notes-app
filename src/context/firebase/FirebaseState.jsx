@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, {useReducer, useState} from "react";
 import axios from "axios";
 import { FirebaseContext } from "./firebaseContext";
 import { firebaseReducer } from "./firebaseReducer";
@@ -13,6 +13,7 @@ const FirebaseState = ({children}) => {
         loading: false
     }
     const [state, dispatch] = useReducer(firebaseReducer, initialState)
+    const [error, setError] = useState('')
 
     const showLoader = () => dispatch({ type: SHOW_LOADER })
 
@@ -52,7 +53,7 @@ const FirebaseState = ({children}) => {
 
             dispatch({ type: ADD_NOTE, payload })
         } catch (e) {
-            throw new Error(e.message)
+            setError(e.message)
         }
     }
 
@@ -77,7 +78,8 @@ const FirebaseState = ({children}) => {
             showLoader, addNote, updateNote, fetchNotes, fetchNote, removeNote,
             loading: state.loading,
             notes: state.notes,
-            note: state.note
+            note: state.note,
+            error
         }}>
             {children}
         </FirebaseContext.Provider>
