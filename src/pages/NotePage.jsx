@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NoteInfo from "../components/NoteInfo";
@@ -16,7 +17,7 @@ const NotePage = () => {
         <div>
             {loading
                 ? <MyLoader/>
-                : <NoteInfo note={note}/>
+                : <NoteInfo note={note} paramsID={params.id}/>
             }
         </div>
     )

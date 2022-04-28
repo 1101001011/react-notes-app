@@ -14,10 +14,10 @@ const MyAlert = () => {
             mountOnEnter
             unmountOnExit
         >
-            <div 
-                className="alert" 
-                style={{ backgroundColor: alert.color }}
-            ></div>
+            <div
+                className="alert"
+                style={{backgroundColor: alert.color}}
+            />
         </CSSTransition>
         
     )

@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import axios from "axios";
 import { FirebaseContext } from "./firebaseContext";
 import { firebaseReducer } from "./firebaseReducer";
-import { ADD_NOTE, FETCH_NOTES, FETCH_NOTE, REMOVE_NOTE, SHOW_LOADER } from "../types";
+import {ADD_NOTE, FETCH_NOTES, FETCH_NOTE, REMOVE_NOTE, SHOW_LOADER, UPDATE_NOTE} from "../types";
 
 const url = 'https://react-notes-app-10ad3-default-rtdb.firebaseio.com'
 
@@ -40,6 +40,7 @@ const FirebaseState = ({children}) => {
     const addNote = async title => {
         const note = {
             title,
+            text: "",
             date: new Date().toJSON()
         }
         try {
@@ -55,6 +56,13 @@ const FirebaseState = ({children}) => {
         }
     }
 
+    const updateNote = async (id, text) => {
+        const response = await axios.patch(`${url}/notes/${id}.json`, {text})
+        const payload = response.data
+
+        dispatch({ type: UPDATE_NOTE, payload })
+    }
+
     const removeNote = async id => {
         await axios.delete(`${url}/notes/${id}.json`)
 
@@ -66,7 +74,7 @@ const FirebaseState = ({children}) => {
 
     return (
         <FirebaseContext.Provider value={{
-            showLoader, addNote, fetchNotes, fetchNote, removeNote,
+            showLoader, addNote, updateNote, fetchNotes, fetchNote, removeNote,
             loading: state.loading,
             notes: state.notes,
             note: state.note
